@@ -11,7 +11,6 @@ gameLoop:while (gameRunning) {
     let correctWord = correctWords[wordIndex];
 
     let letterHint = "_".repeat(correctWord.length);
-
    
     for(let i = wordCollection.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
