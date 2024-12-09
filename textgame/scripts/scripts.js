@@ -28,12 +28,14 @@ gameLoop:while (gameRunning) {
     sessionLoop:while (guesses > 0) {
         let answer = window.prompt(`Your word is ${mixedWord}. Make a guess: `)
         console.log(answer);
-        answer = answer.toLowerCase()
         
         if (answer === null) {
             alert("Quitting game. GG")
-            break gameLoop;
+            gameRunning = false;
+            break;
         }
+
+        answer = answer.toLowerCase()
 
         if (answer.length < 1) {
             alert("Input field cannot be empty!")
@@ -63,7 +65,7 @@ gameLoop:while (gameRunning) {
                     gameRunning = true;
                 } else {
                     alert("See you. GG");
-                    break gameLoop;
+                    gameRunning = false;
                 }
 
             } else {
@@ -77,3 +79,8 @@ gameLoop:while (gameRunning) {
         }
     }
 }
+
+
+
+
+
