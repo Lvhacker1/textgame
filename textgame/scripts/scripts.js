@@ -80,8 +80,3 @@ gameLoop:while (gameRunning) {
         }
     }
 }
-
-
-
-
-
