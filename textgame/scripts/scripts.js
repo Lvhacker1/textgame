@@ -9,7 +9,6 @@ gameLoop:while (gameRunning) {
     const wordCollection = correctWords[wordIndex].split('')
     let mixedWord
     let correctWord = correctWords[wordIndex];
-
     let letterHint = "_".repeat(correctWord.length);
    
     for(let i = wordCollection.length - 1; i > 0; i--) {
@@ -19,20 +18,21 @@ gameLoop:while (gameRunning) {
         wordCollection[j] = temp;
     }
 
-    mixedWord = wordCollection.join('')
-    let guesses = 5
+    mixedWord = wordCollection.join('');
+    let guesses = 5;
+    let sessionLoop = true;
 
     alert("New game starting. You have 5 guesses.")
     alert("The words are programming related. Let's start!")
 
-    sessionLoop:while (guesses > 0) {
+    sessionLoop:while (sessionLoop) {
         let answer = window.prompt(`Your word is ${mixedWord}. Make a guess: `)
-        console.log(answer);
         
         if (answer === null) {
             alert("Quitting game. GG")
             gameRunning = false;
-            break;
+            sessionLoop = false;
+            continue;
         }
 
         answer = answer.toLowerCase()
@@ -54,18 +54,19 @@ gameLoop:while (gameRunning) {
 
         if (correctWord === answer) {
             alert(`You won GG. Correct word: ${correctWord}.`)
-            break sessionLoop;
+            sessionLoop = false;
         } else {
             guesses--;
-            if (guesses < 1) {
+            if (guesses === 0) {
                 alert(`Game over n00b. You lost. Correct word: ${correctWord}`)
 
                 let playAgain = window.confirm("Do you want to play again?");
                 if (playAgain) {
-                    gameRunning = true;
+                    sessionLoop = false;
                 } else {
                     alert("See you. GG");
                     gameRunning = false;
+                    sessionLoop = false;
                 }
 
             } else {
@@ -79,8 +80,3 @@ gameLoop:while (gameRunning) {
         }
     }
 }
-
-
-
-
-
